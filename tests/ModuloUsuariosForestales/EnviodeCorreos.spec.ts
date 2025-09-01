@@ -1,0 +1,31 @@
+import { test, expect } from '@playwright/test';
+
+test('EnviodeCorreos', async ({ page }) => {
+  await page.goto('https://abt.bits.bo/auth/login');
+  await page.getByRole('button', { name: 'INGRESAR COMO FUNCIONARIO' }).click();
+  await page.getByRole('textbox', { name: 'Correo Electronico o Usuario' }).click();
+  await page.getByRole('textbox', { name: 'Correo Electronico o Usuario' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Correo Electronico o Usuario' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Contraseña' }).fill('Admin1234');
+  await page.getByRole('button', { name: 'INICIAR SESIÓN' }).click();
+  await page.locator('a').filter({ hasText: 'Usuarios Forestales' }).click();
+  await page.locator('a').filter({ hasText: 'Administración de Agentes' }).click();
+  await page.getByRole('link', { name: ' Inscripciones' }).click();
+  await page.getByRole('radio', { name: 'Inscripciones Aprobadas' }).click();
+  await page.getByRole('row', { name: '25/06/2025 16:33 65651 pepe' }).locator('app-auxiliar-officers-options').getByRole('button').click();
+  await page.getByRole('menuitem', { name: 'Enviar resolución' }).locator('a').click();
+  await page.getByRole('button', { name: 'Enviar' }).click();
+  await page.getByText('El correo ha sido reenviado').click();
+  await page.getByRole('row', { name: '25/06/2025 16:33 65651 pepe' }).locator('app-auxiliar-officers-options').getByRole('button').click();
+  await page.getByRole('menuitem', { name: 'Enviar evalaluación técnica' }).locator('a').click();
+  await page.getByRole('button', { name: 'Enviar' }).click();
+  await page.getByText('El correo ha sido reenviado').click();
+  await page.getByRole('row', { name: '25/06/2025 16:33 65651 pepe' }).locator('app-auxiliar-officers-options').getByRole('button').click();
+  await page.getByRole('menuitem', { name: 'Descargar formulario FO25' }).locator('a').click();
+  //const page1Promise = page.waitForEvent('popup');
+  //await page.getByRole('link', { name: 'retencion-de-documentos-' }).click();
+ // const page1 = await page1Promise;
+  await page.getByRole('button', { name: 'Cancelar' }).click();
+  await page.getByRole('button', { name: 'AM' }).click();
+  await page.getByRole('button', { name: ' Cerrar Sesión' }).click();
+});
